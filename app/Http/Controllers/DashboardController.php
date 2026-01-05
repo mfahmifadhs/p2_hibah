@@ -28,7 +28,9 @@ class DashboardController extends Controller
         $total->users       = User::get();
         $total->anggaran    = number_format(Alokasi::where('tahun', \Carbon\Carbon::now()->year)->sum('nilai_alokasi'), 0, ',', '.');
         $total->realisasi   = number_format($total->kegiatan->where('rencana_thn_pelaksana', \Carbon\Carbon::now()->year)->sum('nilai_realisasi'), 0, ',', '.');
-        $total->persentase  = number_format(((int) str_replace('.', '', $total->realisasi) / (int) str_replace('.', '', $total->anggaran) * 100), 2, ',', '.') . ' %';
+        $total->persentase = $total->anggaran > 0
+            ? number_format(($total->realisasi / $total->anggaran) * 100, 2, ',', '.') . ' %'
+        : '0 %';
         $role               = Auth::user()->role_id;
 
         if ($role == 4) {
