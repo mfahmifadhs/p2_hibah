@@ -170,7 +170,7 @@
                                     <td class="align-middle text-center">${item.register}</td>
                                     <td class="align-middle text-start">${item.proyek}</td>
                                     <td class="align-middle text-center">${item.periode}</td>
-                                    <td class="align-middle text-center" style="white-space: nowrap;" data-order="${item.total_idr_raw}">${item.total_idr_raw}</td>
+                                    <td class="align-middle text-center" style="white-space: nowrap;" data-order="${item.total_idr_raw}">${item.total_idr}</td>
                                     <td class="align-middle text-center" style="white-space: nowrap;" data-order="${item.total_usd_raw}">${item.total_usd}</td>
                                     <td class="align-middle text-center">${item.status}</td>
                                 </tr>
