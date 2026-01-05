@@ -65,9 +65,11 @@ class JenisKegiatan extends Model
                 'jenis_id'            => $jenis->id,
                 'nama_jenis'          => strtoupper($jenis->nama_jenis ?? '-'),
                 'total_alokasi'       => 'Rp ' . number_format($totalAlokasi, 0, ',', '.'),
+                'total_alokasi_raw'   => $totalAlokasi,
                 'total_realisasi'     => 'Rp ' . number_format($totalRealisasi, 0, ',', '.'),
                 'total_realisasi_int' => $totalRealisasi,
                 'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
+                'persentase_raw'      => $persentase, 2, ',', '.',
             ];
         });
 
@@ -99,9 +101,11 @@ class JenisKegiatan extends Model
                 'jenis_id'            => 'kosong',
                 'nama_jenis'          => 'TIDAK DITENTUKAN',
                 'total_alokasi'       => 'Rp ' . number_format($totalAlokasi, 0, ',', '.'),
+                'total_alokasi'       => $totalAlokasi,
                 'total_realisasi'     => 'Rp ' . number_format($totalRealisasi, 0, ',', '.'),
                 'total_realisasi_int' => $totalRealisasi,
                 'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
+                'persentase_raw'      => $persentase,
             ]);
         }
 

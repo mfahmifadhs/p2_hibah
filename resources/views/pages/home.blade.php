@@ -362,9 +362,13 @@
                                 <tr onclick="window.location=`{{ route('kegiatan.show', ['donor_id' => $row->donor_id ?? null, 'tahun' => \Carbon\Carbon::now()->year]) }}`" style="cursor:pointer;">
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-start">{{ $row->nama_donor }}</td>
-                                    <td class="text-start" style="white-space: nowrap;">{{ $row->total_alokasi }}</td>
-                                    <td class="text-start" style="white-space: nowrap;">{{ $row->total_realisasi }}</td>
-                                    <td>
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_alokasi_raw }}">
+                                        {{ $row->total_alokasi }}
+                                    </td>
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_realisasi_int }}">
+                                        {{ $row->total_realisasi }}
+                                    </td>
+                                    <td data-order="{{ $row->pesentase_raw }}">
                                         @php
                                         if ($row->persentase <= 50) {
                                             $warna='badge bg-danger' ;
@@ -414,9 +418,13 @@
                                 <tr onclick="window.location=`{{ route('kegiatan.show', ['jenis_id' => $row->jenis_id ?? null, 'tahun' => \Carbon\Carbon::now()->year ]) }}`" style="cursor:pointer;">
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-start">{{ $row->nama_jenis }}</td>
-                                    <td class="text-start" style="white-space: nowrap;">{{ $row->total_alokasi }}</td>
-                                    <td class="text-start" style="white-space: nowrap;">{{ $row->total_realisasi }}</td>
-                                    <td>
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_alokasi_raw }}">
+                                        {{ $row->total_alokasi }}
+                                    </td>
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_realisasi_int }}">
+                                        {{ $row->total_realisasi }}
+                                    </td>
+                                    <td data-order="{{ $row->persentase_raw }}">
                                         @php
                                         if ($row->persentase <= 50) {
                                             $warna='badge bg-danger' ;

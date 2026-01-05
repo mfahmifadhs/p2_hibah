@@ -132,9 +132,11 @@ class Proyek extends Model
                     'donor_id'            => $donorId,
                     'nama_donor'          => $namaDonor,
                     'total_alokasi'       => number_format($totalAlokasi, 0, ',', '.'),
+                    'total_alokasi_raw'   => $totalAlokasi,
                     'total_realisasi'     => number_format($totalRealisasi, 0, ',', '.'),
                     'total_realisasi_int' => $totalRealisasi,
                     'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
+                    'persentase_raw'      => $persentase,
                 ];
             })
             ->values();
