@@ -99,9 +99,11 @@ class Proyek extends Model
                     'uker_id'             => $ukerId,
                     'unit_kerja'          => $unitKerja,
                     'total_alokasi'       => number_format($totalAlokasi, 0, ',', '.'),
+                    'total_alokasi_raw'   => $totalAlokasi, // Tambahkan ini untuk sorting
                     'total_realisasi'     => number_format($totalRealisasi, 0, ',', '.'),
-                    'total_realisasi_int' => $totalRealisasi,
+                    'total_realisasi_raw' => $totalRealisasi, // Tambahkan ini untuk sorting
                     'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
+                    'persentase_raw'      => $persentase, // Tambahkan ini untuk sorting
                 ];
             })
             ->values();
