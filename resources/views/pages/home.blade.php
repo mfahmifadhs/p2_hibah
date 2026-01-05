@@ -368,7 +368,7 @@
                                     <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_realisasi_int }}">
                                         {{ $row->total_realisasi }}
                                     </td>
-                                    <td data-order="{{ $row->pesentase_raw }}">
+                                    <td data-order="{{ $row->persentase_raw }}">
                                         @php
                                         if ($row->persentase <= 50) {
                                             $warna='badge bg-danger' ;
