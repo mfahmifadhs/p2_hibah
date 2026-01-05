@@ -306,13 +306,13 @@
                                 <tr onclick="window.location=`{{ route('kegiatan.show', ['uker_id' => $row->uker_id ?? null, 'tahun' => \Carbon\Carbon::now()->year]) }}`" style="cursor:pointer;">
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-start">{{ $row->unit_kerja }}</td>
-                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $item->total_alokasi_raw }}">
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_alokasi_raw }}">
                                         {{ $row->total_alokasi }}
                                     </td>
-                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $item->total_realisasi_raw }}">
+                                    <td class="text-start" style="white-space: nowrap;" data-order="{{ $row->total_realisasi_raw }}">
                                         {{ $row->total_realisasi }}
                                     </td>
-                                    <td data-order="{{ $item->persentase_raw }}">
+                                    <td data-order="{{ $row->persentase_raw }}">
                                         @php
                                         if ($row->persentase <= 50) {
                                             $warna='badge bg-danger' ;
