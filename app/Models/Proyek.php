@@ -98,8 +98,8 @@ class Proyek extends Model
                 return (object) [
                     'uker_id'             => $ukerId,
                     'unit_kerja'          => $unitKerja,
-                    'total_alokasi'       => 'Rp ' . number_format($totalAlokasi, 0, ',', '.'),
-                    'total_realisasi'     => 'Rp ' . number_format($totalRealisasi, 0, ',', '.'),
+                    'total_alokasi'       => number_format($totalAlokasi, 0, ',', '.'),
+                    'total_realisasi'     => number_format($totalRealisasi, 0, ',', '.'),
                     'total_realisasi_int' => $totalRealisasi,
                     'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
                 ];
@@ -129,8 +129,8 @@ class Proyek extends Model
                 return (object) [
                     'donor_id'            => $donorId,
                     'nama_donor'          => $namaDonor,
-                    'total_alokasi'       => 'Rp ' . number_format($totalAlokasi, 0, ',', '.'),
-                    'total_realisasi'     => 'Rp ' . number_format($totalRealisasi, 0, ',', '.'),
+                    'total_alokasi'       => number_format($totalAlokasi, 0, ',', '.'),
+                    'total_realisasi'     => number_format($totalRealisasi, 0, ',', '.'),
                     'total_realisasi_int' => $totalRealisasi,
                     'persentase'          => number_format($persentase, 2, ',', '.') . ' %',
                 ];
