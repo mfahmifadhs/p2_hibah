@@ -17,6 +17,13 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $anggaran = Alokasi::where('tahun', \Carbon\Carbon::now()->year)
+            ->sum('nilai_alokasi');
+
+        $realisasi = Kegiatan::where('rencana_thn_pelaksana', \Carbon\Carbon::now()->year)
+            ->sum('nilai_realisasi');
+
+
         $total = new \stdClass();
         $total->proyek      = Proyek::with('alokasi')->get();
         $total->perUker     = Proyek::totalPerUnit();
@@ -26,11 +33,9 @@ class HomeController extends Controller
         $total->perJenis    = JenisKegiatan::totalPerJenis();
         $total->donor       = Donor::get();
         $total->users       = User::get();
-        $total->anggaran    = number_format(Alokasi::where('tahun', \Carbon\Carbon::now()->year)->sum('nilai_alokasi'), 0, ',', '.');
-        $total->realisasi   = number_format($total->kegiatan->where('rencana_thn_pelaksana', \Carbon\Carbon::now()->year)->sum('nilai_realisasi'), 0, ',', '.');
-        $total->persentase = $total->anggaran > 0
-            ? number_format(($total->realisasi / $total->anggaran) * 100, 2, ',', '.') . ' %'
-        : '0 %';
+        $total->anggaran    = number_format($anggaran, 0, ',', '.');
+        $total->realisasi   = number_format($realisasi, 0, ',', '.');
+        $total->persentase  = $anggaran > 0 ? number_format(($realisasi / $anggaran) * 100, 2, ',', '.') . ' %' : '0 %';
         $role               = Auth::user()->role_id;
 
         if ($role == 4) {
