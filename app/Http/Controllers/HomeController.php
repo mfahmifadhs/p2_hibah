@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alokasi;
 use App\Models\Donor;
+use App\Models\DonorUker;
 use App\Models\JenisKegiatan;
 use App\Models\Kegiatan;
 use App\Models\Pencairan;
@@ -55,6 +56,7 @@ class HomeController extends Controller
         $total->proyek      = Proyek::with('alokasi')->where('user_id', $id)->get();
         $total->perDonor    = Proyek::totalPerDonor();
         $total->perJenis    = JenisKegiatan::totalPerJenis();
+        $total->donor       = DonorUker::where('uker_id', Auth::user()->pegawai->uker_id)->get();
         $total->kegiatan    = Kegiatan::whereHas('proyek', function ($q) use ($id) {
             $q->where('user_id', $id);
         })->get();

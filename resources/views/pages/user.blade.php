@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <div class="small-box text-bg-primary rounded-4">
                             <div class="inner">
                                 <h3>{{ $total->kegiatan->count() }} <small class="fs-6">proyek</small></h3>
@@ -49,7 +49,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-4 col-6">
                         <div class="small-box text-bg-success rounded-4">
                             <div class="inner">
                                 <h3>{{ $total->kegiatan->count() }} <small class="fs-6">kegiatan</small></h3>
@@ -57,6 +57,19 @@
                             <i class="small-box-icon bi bi-shadows"></i>
                             <a
                                 href="{{ route('kegiatan.show') }}"
+                                class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                                Selengkapnya <i class="bi bi-arrow-right-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box text-bg-success rounded-4">
+                            <div class="inner">
+                                <h3>{{ $total->donor->count() }} <small class="fs-6">donor</small></h3>
+                            </div>
+                            <i class="small-box-icon bi bi-shadows"></i>
+                            <a
+                                href="{{ route('donor.show') }}"
                                 class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                                 Selengkapnya <i class="bi bi-arrow-right-circle"></i>
                             </a>

@@ -1,177 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SMH | Login</title>
+    <title>SIMPEL | Login</title>
 
-    <!-- Icon Title -->
     <link rel="icon" type="image/png" href="{{ asset('dist/img/logo-kemenkes-icon.png') }}">
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        crossorigin="anonymous" />
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
-    <!-- Swal -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="form-group first">
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p style="color:white;margin: auto;">{{ $message }}</p>
-            </div>
-            @endif
-            @if ($message = Session::get('failed'))
-            <div class="alert alert-danger">
-                <p style="color:white;margin: auto;">{{ $message }}</p>
-            </div>
-            @endif
-        </div>
-        <div class="card" style="border-radius: 20px;">
-            <div class="card-header text-center">
-                <a href="{{ url('/') }}">
-                    <p><img src="{{ url('dist/img/logo-kemenkes.png') }}" class="img-fluid" width="300"></p>
-                </a>
-                <span class="text-uppercase text-center small" style="font-family: Arial;">
-                    Sistem Monitoring Pengelolaan <br> Hibah & Kerjasama
-                </span>
-            </div>
-            <div class="card-body">
-                <form id="form" action="{{ route('login.post') }}" method="POST">
-                    @csrf
-                    <label for="username" class="my-1 fw-bold">Username</label>
-                    <div id="username" class="input-group mb-3">
-                        <div class="input-group-append">
-                            <div class="input-group-text rounded-left rounded-0 border border-dark">
-                                <span class="bi bi-person-circle"></span>
-                            </div>
-                        </div>
-                        <input type="text" name="username" class="form-control border border-dark" placeholder="Username">
-                    </div>
-                    <label for="password" class="mb-2 fw-bold">Password</label>
-                    <div class="input-group mb-3" id="password">
-                        <div class="input-group-append">
-                            <div class="input-group-text rounded-left rounded-0 border border-dark">
-                                <a type="button" onclick="lihatPassword()">
-                                    <i class="bi bi-lock-fill" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <input type="password" name="password" class="form-control border border-dark" placeholder="Password">
-                    </div>
-                    <div class="social-auth-links text-center mt-2 mb-3">
-                        <button type="submit" class="btn btn-block btn-primary form-control" onclick="confirmSubmit(event, 'form')">
-                            Masuk
-                        </button>
-                    </div>
-                </form>
-
-                <p class="mb-1">
-                    <a href="#">Lupa password ?</a>
-                </p>
-                <p class="mb-0">
-                    <a href="https://wa.me/6285772652563" class="text-center">Bantuan</a>
-                </p>
-            </div>
-        </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.login-box -->
-
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Bootstrap 5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-    <!-- Include SweetAlert JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-    <!-- Lihat Password -->
-    <script type="text/javascript">
-        function lihatPassword() {
-            var x = document.getElementById("password");
-            if ($('#password input').attr("type") == "password") {
-                $('#password input').attr('type', 'text');
-                $('#password i').addClass("bi-lock");
-                $('#password i').removeClass("bi-lock-fill");
-            } else {
-                $('#password input').attr('type', 'password');
-                $('#password i').removeClass("bi-lock");
-                $('#password i').addClass("bi-lock-fill");
-            }
+    <style>
+        body {
+            background: #f5f7fb;
+            min-height: 100vh;
         }
 
-        $('#reload').click(function() {
-            $.ajax({
-                type: 'GET',
-                url: 'captcha-reload',
-                success: function(data) {
-                    $(".captcha span").html(data.captcha);
-                }
-            });
-        });
+        .login-wrapper {
+            min-height: 100vh;
+        }
+
+        .login-left {
+            background: linear-gradient(135deg, #1bb3a7, #0f8f87);
+            color: #fff;
+        }
+
+        .login-left .icon-box {
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 6px;
+        }
+
+        .login-card {
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .form-control:focus {
+            border-color: #1bb3a7;
+            box-shadow: 0 0 0 .2rem rgba(27, 179, 167, .15);
+        }
+
+        .btn-login {
+            background: #1bb3a7;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        .btn-login:hover {
+            background: #159b91;
+        }
+
+        @media (max-width: 768px) {
+            .login-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row login-wrapper">
+
+            <!-- LEFT -->
+            <div class="col-md-6 login-left d-flex align-items-center justify-content-center">
+                <div class="text-center px-4">
+                    <img src="{{ asset('dist/img/logo-kemenkes.png') }}" width="260" class="mb-4">
+
+                    <h4 class="fw-bold">SIMPEL</h4>
+                    <p class="opacity-75 mb-4">
+                        Sistem Monitoring Pinjaman dan Hibah Langsung
+                    </p>
+
+                    <div class="d-flex justify-content-center flex-wrap mt-4">
+                        <div class="icon-box"><i class="bi bi-heart-pulse fs-4"></i></div>
+                        <div class="icon-box"><i class="bi bi-shield-check fs-4"></i></div>
+                        <div class="icon-box"><i class="bi bi-clipboard-data fs-4"></i></div>
+                        <div class="icon-box"><i class="bi bi-hospital fs-4"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+
+                    @if ($message = Session::get('failed'))
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @endif
+
+                    <div class="card login-card border-0">
+                        <div class="card-body p-4 p-md-5">
+
+                            <h4 class="fw-bold mb-1">Masuk</h4>
+                            <p class="text-muted mb-4">
+                                Masuk ke aplikasi <strong>SIMPEL</strong>
+                            </p>
+
+                            <form id="loginForm" action="{{ route('login.post') }}" method="POST">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+                                        <input type="text" name="username" class="form-control" placeholder="Masukkan username" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            class="form-control"
+                                            placeholder="Masukkan password"
+                                            required>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-light"
+                                            onclick="togglePassword()">
+                                            <i id="eyeIcon" class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="#" class="small">Lupa password?</a>
+                                    <a href="https://wa.me/6285772652563" class="small">Bantuan</a>
+                                </div>
+
+                                <button type="button" class="btn btn-login w-100 text-white" onclick="showConfirm()">
+                                    Masuk
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-body text-center p-4">
+
+                    <div id="confirmLottie" style="height:160px;"></div>
+
+                    <h5 class="fw-bold mt-2">Konfirmasi Masuk</h5>
+                    <p class="text-muted mb-4">
+                        Apakah Anda yakin ingin masuk ke aplikasi SIMPEL?
+                    </p>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-light w-100" data-bs-dismiss="modal">
+                            Tidak
+                        </button>
+                        <button class="btn btn-login w-100 text-white" onclick="submitLogin()">
+                            Ya
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye');
+            }
+        }
     </script>
 
     <script>
-        function confirmSubmit(event, formId) {
-            event.preventDefault();
+        // Load Lottie animation
+        lottie.loadAnimation({
+            container: document.getElementById('confirmLottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets3.lottiefiles.com/packages/lf20_jcikwtux.json'
+        });
 
-            const form = document.getElementById(formId);
-            const requiredInputs = form.querySelectorAll('input[required]:not(:disabled), select[required]:not(:disabled), textarea[required]:not(:disabled)');
+        function showConfirm() {
+            const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            modal.show();
+        }
 
-            let allInputsValid = true;
-
-            requiredInputs.forEach(input => {
-                if (input.value.trim() === '') {
-                    input.style.borderColor = 'red';
-                    allInputsValid = false;
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
-
-            if (allInputsValid) {
-                Swal.fire({
-                    title: 'Proses',
-                    text: '',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Batal',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: 'Proses...',
-                            text: 'Mohon menunggu.',
-                            icon: 'info',
-                            allowOutsideClick: false,
-                            didOpen: () => {
-                                Swal.showLoading();
-                            }
-                        });
-
-                        form.submit();
-                    }
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Ada input yang diperlukan yang belum diisi.',
-                    icon: 'error'
-                });
-            }
+        function submitLogin() {
+            document.getElementById('loginForm').submit();
         }
     </script>
+
+
 </body>
 
 </html>

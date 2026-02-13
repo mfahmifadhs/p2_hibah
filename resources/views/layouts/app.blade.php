@@ -264,6 +264,30 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-folder2-open"></i>
+                                <p>
+                                    Hibah
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview ms-3">
+                                <li class="nav-item">
+                                    <a href="{{ route('proyek.show') }}" class="nav-link">
+                                        <i class="nav-icon bi bi-clipboard"></i>
+                                        <p>Hibah Langsung</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('proyek.show') }}" class="nav-link">
+                                        <i class="nav-icon bi bi-clipboard"></i>
+                                        <p>Hibah Langsung</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('pengadaan.show') }}" class="nav-link">
                                 <i class="nav-icon bi bi-box-seam"></i>
@@ -276,30 +300,48 @@
                                 <p>Matriks Sandingan</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('proyek.show') }}" class="nav-link">
-                                <i class="nav-icon bi bi-clipboard"></i>
-                                <p>Proyek</p>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-folder2-open"></i>
+                                <p>
+                                    Pengelolaan
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
                             </a>
+
+                            <ul class="nav nav-treeview ms-3">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('proyek.show') }}" class="nav-link">
+                                        <i class="nav-icon bi bi-clipboard"></i>
+                                        <p>Proyek</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('kegiatan.show') }}" class="nav-link">
+                                        <i class="nav-icon bi bi-wallet"></i>
+                                        <p>Kegiatan</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon bi bi-file-earmark-bar-graph"></i>
+                                        <p>Realisasi</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('pencairan.show') }}" class="nav-link">
+                                        <i class="nav-icon bi bi-cash-stack"></i>
+                                        <p>Pencairan</p>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
-                        <li class="nav-item" style="margin-left: 2vh;">
-                            <a href="{{ route('kegiatan.show') }}" class="nav-link">
-                                <i class="nav-icon bi bi-wallet"></i>
-                                <p>Kegiatan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="margin-left: 2vh;">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon bi bi-file-earmark-bar-graph"></i>
-                                <p>Realisasi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="margin-left: 2vh;">
-                            <a href="{{ route('pencairan.show') }}" class="nav-link">
-                                <i class="nav-icon bi bi-cash-stack"></i>
-                                <p>Pencairan</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="nav-icon bi bi-bar-chart-line"></i>
